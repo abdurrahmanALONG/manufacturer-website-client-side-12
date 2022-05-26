@@ -1,0 +1,93 @@
+/* This style for Banner component */
+.banner-height{
+    height: 550px;
+    margin-bottom: 20px;
+}
+
+
+/* This style for Items component */
+.itemsshow{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+@media only screen and (max-width:576px) {
+    .itemsshow {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* This style for Item component */
+.items{
+    background-color: aliceblue;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 650px;
+}
+.items img{
+    width: 100%;
+    height: 250px;
+    padding: 20px;
+}
+
+
+
+/* This style for Review component */
+.reviewbackground{
+    background-color:  rgb(230, 239, 240);
+}
+.personComent{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.reviewerimg{
+    border: 2px,solid,rgb(111, 128, 175);
+    border-radius: 50%;
+}
+@media only screen and (max-width:576px) {
+    .reviewbackground {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+
+
+/* This style for Summary component */
+.bussinesSummary{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color:  rgb(230, 239, 240);
+}
+@media only screen and (max-width:576px) {
+    .bussinesSummary {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+
+
+/* This style for Help component */
+.helpIcon{
+width: 100px;
+height: 100px;
+}
+.helpdisplay{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+}
+.middilicon{
+    border-left: 3px solid rgb(29, 224, 215);
+    border-right: 3px solid rgb(29, 224, 215) ;
+}
+
+
+
+/* This style for Help component */
+.bringlatest{
+background-color: rgb(53, 78, 221);
+}

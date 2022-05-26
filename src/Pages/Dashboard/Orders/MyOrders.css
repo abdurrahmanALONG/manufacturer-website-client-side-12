@@ -1,0 +1,28 @@
+.myitemsAllshow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.myitem{
+    background-color: aliceblue;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 650px;
+}
+.myitem img{
+    width: 100%;
+    height: 250px;
+    padding: 20px;
+}
+
+/* make responsive */
+@media only screen and (max-width:576px) {
+    .myitemsAllshow {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
