@@ -1,39 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import Logo from '../../images/card/pro-1.jpg'
 import './Home.css'
+import ReviewCard from './ReviewCard';
 
 const Review = () => {
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data));
+    }, []) 
+    console.log(reviews);
+    
     return (
-        <div className='my-5 reviewbackground'>
-            <h1 className='text-center'>Castomar Reviews</h1>
-            <div className='mx-2 p-2'>
-                <Card className='my-5' style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk
-                            of the card's content.
-                        </Card.Text>
-                        <div className='personComent'>
-                            <div >
-                                <span ><img className='reviewerimg' height={40} src={Logo} alt="" /></span>
-                            </div>
-                            <div>
-                                <h6>Abdur Rahman</h6>
-                                <p><small>California</small></p>
-                            </div>
-                            <div>
-                                <br></br>
-                            </div>
-                            <div>
-                                <br></br>
-                            </div>
-                            <div>
-                                <br></br>
-                            </div>
-                        </div>
-                    </Card.Body>
-                </Card>
+        <div className='my-5'>
+            <h1 className='text-center'>REVIEWS</h1>
+            <div className='personComent'>
+                {
+                    reviews.map(review => <ReviewCard
+                        key={review._id}
+                        review={review}
+                        ></ReviewCard>)
+                }
             </div>
         </div>
     );

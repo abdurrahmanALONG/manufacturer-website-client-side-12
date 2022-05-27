@@ -41,11 +41,7 @@
 }
 .personComent{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-}
-.reviewerimg{
-    border: 2px,solid,rgb(111, 128, 175);
-    border-radius: 50%;
+    grid-template-columns: repeat(4, 1fr);
 }
 @media only screen and (max-width:576px) {
     .reviewbackground {

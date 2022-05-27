@@ -1,115 +1,109 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
     const { itemID } = useParams();
-    const [user, loading] = useAuthState(auth);
-    console.log(itemID);
-    const [itembuy, setItembuy] = useState({});
-    
+    const [user] = useAuthState(auth);
+    const [show, setShow] = useState(false);
+    const [item, setItem] = useState({});
+
     useEffect(() => {
-        // const url = `http://localhost:5000/tools/${itemID}`;
-        const url = `http://localhost:5000/tools`;
+        const url = `http://localhost:5000/tools/${itemID}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => setItembuy(data));
-
+            .then(data => setItem(data));
     }, [itemID]);
-    console.log(itembuy.name,[0]);
+
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => {
+        console.log(data);
+        const url = `http://localhost:5000/orders`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                toast('Orderd Successfully');
+                window.location.reload();
+            })
+    };
+   
 
 
-    // // This is for Add New Quantity
-    // const handleUpdateQuantity = event => {
-    //     event.preventDefault();
-    //     const oldQuantity = parseInt(item.quantity);
-    //     const newQuantity = parseInt(event.target.name.value);
-    //     const totalNewQuantity = oldQuantity + newQuantity;
-    //     const updatedQuantity = { totalNewQuantity };
-
-    //     const url = `items.json/${item.id}`;
-    //     fetch(url, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(updatedQuantity)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log('success', data);
-    //             alert('Are you sure!!!');
-    //             event.target.reset();
-    //             window.location.reload();
-    //         })
-    // }
-
-
-
-    // // this is for Delivered
-    // const handleDicrisQuantityByOne = event => {
-    //     event.preventDefault();
-    //     const quantityCurrent = parseInt(item.quantity);
-    //     console.log(quantityCurrent);
-    //     const totalNewQuantity = quantityCurrent - 1;
-    //     console.log(totalNewQuantity);
-    //     const updatedQuantity = { totalNewQuantity };
-    //     const url = `items.json/${item.id}`;
-    //     fetch(url, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(updatedQuantity)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log('success', data);
-    //             alert('Are you sure!!!');
-    //             event.target.reset();
-    //             window.location.reload();
-    //         })
-    // };
 
     return (
-        <div className='mt-3'>
-            <h1 className='text-center my-4'>This is the full Details about the product no: {itemID}</h1>
+        <div className='my-5'>
+            <div className='text-center'>
+                {
+                    show ? <h4><span>UserName:{user.displayName}</span><span><h6>User email:{user.email}</h6></span></h4>:null
+                }
+                {
+                    <button className='btn-info' onClick={()=>setShow(!show)}>User Info</button>
+                }
+            </div>
+            <div>
+            <h1 className='text-center my-4'>This is the full Details about the product</h1>
+            <Card className='my-4 mx-auto w-50 text-center'>
+                        <Card.Body className='w-50 mx-auto text-center'>
+                            <Card.Title>Product Name: {item.name} </Card.Title>
+                            <Card.Text>Unit Per Price: {item.unitPerPrice}</Card.Text>
+                            <Card.Text>Available Quantity: {item.availableQuantity}</Card.Text>
+                            <Card.Text>Min Order Quantity: {item.minOrderQuantity}</Card.Text>
+                            <Card.Text>Supplier Name: {item.suppliername}</Card.Text>
+                            <Card.Text>Details: {item.details}</Card.Text>
+                        </Card.Body>
+                </Card>
+            </div>
+            <div className='w-50 mx-auto my-5'>
+            <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
+                <input className='mb-2' placeholder='Item Name' type="text" value={item?.name}  {...register("name")} readOnly />
+                <textarea className='mb-2' placeholder='Address' type="text" {...register("address")} />
+                <input className='mb-2' placeholder='Quantity' type="number" {...register("quantity")} />
+                <input className='mb-2' placeholder='Phone number' type="number" {...register("phone")} />
+                <input className='mb-2' placeholder='Supplier Email' value={user?.email}  type="text" {...register("email")} readOnly />
+                <input className='btn btn-primary' type="submit" value="Purchase" />
+            </form>
+            <ToastContainer></ToastContainer>
+        </div>
+
+            
             {/* <div className='px-auto'>
                 <Card className='my-4'>
-                    <Form className=' mx-auto text-center' onSubmit={handleDicrisQuantityByOne}>
+                    <Form className=' mx-auto text-center' >
                         <Card.Img className='w-50  text-center' variant="top" src={item.img} />
                         <Card.Body className='w-50 mx-auto text-center'>
                             <Card.Title>Product Name: {item.name} </Card.Title>
-                            <Card.Text>Price: {item.price}</Card.Text>
-                            <Card.Text>Quentity: {item.quantity}</Card.Text>
+                            <Card.Text>Unit Per Price: {item.unitPerPrice}</Card.Text>
+                            <Card.Text>Available Quantity: {item.availableQuantity}</Card.Text>
+                            <Card.Text>Min Order Quantity: {item.minOrderQuantity}</Card.Text>
                             <Card.Text>Supplier Name: {item.suppliername}</Card.Text>
-                            <Card.Text>Supplier Email: {item.email}</Card.Text>
                             <Card.Text>Details: {item.details}</Card.Text>
                         </Card.Body>
-                        <Form.Group className="mb-3 text-center" controlId="formBasicnewQuantity">
-                            <Button className='my-2' variant="primary" type="submit">
-                                Delivered
-                            </Button>
-                        </Form.Group>
                     </Form>
                     <Card.Body className=' text-center'>
-                        <Form className='w-50 mx-auto' onSubmit={handleUpdateQuantity}>
+                        <Form className='w-50 mx-auto'>
                             <Form.Group className="mb-3" controlId="formBasicnewQuantity">
-                                <Form.Control type="number" name="name" placeholder="Put New Quantity" />
+                                <Form.Control type="text" name="name" placeholder="Product" value={item.name} />
+                                <Form.Control type="number" name="name" placeholder="Put Order Quantity" />
+                                <Form.Control type="text" name="address" placeholder="Address" />
+                                <Form.Control type="number" name="phone" placeholder="Phone number" />
                                 <Button className='my-2' variant="primary" type="submit">
-                                    Add New Quantity
+                                  Purchase Your Product
                                 </Button>
                             </Form.Group>
                         </Form>
                     </Card.Body>
                 </Card>
-                <div className='my-3 text-center'>
-                    <Link to="/Items" className='btn btn-primary pe-auto text-center'>
-                        Manage Inventories
-                    </Link>
-                </div>
             </div> */}
         </div>
     );

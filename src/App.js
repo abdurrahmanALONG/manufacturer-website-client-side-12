@@ -36,19 +36,15 @@ function App() {
               <Purchase></Purchase>
             </RequireAuth>
           }></Route>
+          <Route path="/MyOrders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="/AddAReview" element={<AddAReview></AddAReview>}></Route>
           <Route path="/blogs" element={<Blogs></Blogs>}></Route>
           <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route>
-          <Route path="/MyOrders" element={
-            <RequireAuth>
-              <MyOrders></MyOrders>
-            </RequireAuth>
-          }></Route>
-          <Route path="/AddAReview" element={
-            <RequireAuth>
-              <AddAReview></AddAReview>
-            </RequireAuth>
-          }></Route>
-          <Route path="/MyProfile" element={<MyProfile></MyProfile>}></Route>
+
+
+          <Route path="/MyProfile" element={
+            <RequireAuth><MyProfile></MyProfile></RequireAuth>}>
+          </Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </div>
