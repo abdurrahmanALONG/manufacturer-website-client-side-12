@@ -17,12 +17,12 @@ const Dashboard = () => {
             <div className="das-link">
                 <label for="dashboard-sidebar"></label>
                 <ul className="">
-                    <li><Link to="/dashboard/MyOrders">My Orders</Link></li>
-                    <li><Link to="/dashboard/AddAReview">Add Reviews</Link></li>
+                    {!admin &&<li><Link to="/dashboard/MyOrders">My Orders</Link></li>}
+                    {!admin &&<li><Link to="/dashboard/AddAReview">Add Reviews</Link></li>}
                     <li><Link to="/dashboard/MyProfile">My Profile</Link></li>
-                    <li><Link to="/dashboard/ManageAllOrders">Manage All Orders</Link></li>
-                    <li><Link to="/dashboard/AddAProduct">Add A Product</Link></li>
-                    <li><Link to="/dashboard/ManageProducts">Manage Products</Link></li>
+                    {admin &&<li><Link to="/dashboard/ManageAllOrders">Manage All Orders</Link></li>}
+                    {admin &&<li><Link to="/dashboard/AddAProduct">Add A Product</Link></li>}
+                    {admin &&<li><Link to="/dashboard/ManageProducts">Manage Products</Link></li>}
                     {admin && <li><Link to="/dashboard/Users">Make Admin</Link></li>}
                 </ul>
 
