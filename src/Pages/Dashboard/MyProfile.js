@@ -40,7 +40,7 @@ const MyProfile = () => {
                     </Form>
                 </Card>
             </div>
-            <div className='w-50 mx-auto'>
+            <div className='w-100 mx-auto'>
             <h1 className='text-center'>Please add new item</h1>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mb-2' placeholder='User Name' value={user.displayName} type="text" {...register("name")} readOnly/>

@@ -18,6 +18,10 @@ import Registration from './Pages/Login/Registration';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Users from './Pages/Dashboard/Users';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
+import AddAProduct from './Pages/Dashboard/AddAProduct';
+import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+
 
 
 
@@ -40,11 +44,13 @@ function App() {
           }></Route>
           <Route path="/blogs" element={<Blogs></Blogs>}></Route>
           <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route>
-
           <Route path="Dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
             <Route path="MyOrders" element={<MyOrders></MyOrders>}></Route>
             <Route path="AddAReview" element={<AddAReview></AddAReview>}></Route>
             <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="ManageProducts" element={<ManageProducts></ManageProducts>}></Route>
+            <Route path="AddAProduct" element={<AddAProduct></AddAProduct>}></Route>
+            <Route path="ManageAllOrders" element={<ManageAllOrders></ManageAllOrders>}></Route>
             <Route path="Users" element={<Users></Users>}></Route>
           </Route>
           <Route path="/purchase" element={<Purchase></Purchase>}></Route>
