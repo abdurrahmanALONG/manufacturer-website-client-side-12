@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+# AR TOOLS
+# LiveSite Link:
+
+
+## Features and Functionality
+### This is a manufacturer website page.
+### user must need a varified email address for login.
+### Without login or registration you user cannot enter some pages.
+### Here users can navigate from one page to another page easily.
+### here i use mongodb database.
+### here user can upload his data to the database.
+
+
+## List of technologies used in this project.
+### React app
+### React router
+### Google firebase authentication
+### React Bootstrap
+### Venila CSS
+### imgbb
+### react-firebase-hooks
+### react-toastify
+### react-query
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
