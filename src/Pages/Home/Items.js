@@ -7,7 +7,7 @@ import Item from './Item';
 const Items = () => {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/tools')
+        fetch('https://polar-shore-11894.herokuapp.com/tools')
             .then(res => res.json())
             .then(data => setItems(data));
     }, [])

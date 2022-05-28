@@ -13,7 +13,7 @@ const MakeOrder = () => {
     const [item, setItem] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/tools/${itemID}`;
+        const url = `https://polar-shore-11894.herokuapp.com/tools/${itemID}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data));
@@ -22,7 +22,7 @@ const MakeOrder = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/orders`;
+        const url = `https://polar-shore-11894.herokuapp.com/orders`;
         fetch(url, {
             method: 'POST',
             headers: {

@@ -18,7 +18,7 @@ const MyOrders = () => {
     const [myitemsDelete, setMyItemsDelete] = useState([]);
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            fetch(`https://polar-shore-11894.herokuapp.com/orders?email=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const MyOrders = () => {
     const handelDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://polar-shore-11894.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

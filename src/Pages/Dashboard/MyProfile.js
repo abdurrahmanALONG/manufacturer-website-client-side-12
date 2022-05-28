@@ -10,7 +10,7 @@ const MyProfile = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/userDital`;
+        const url = `https://polar-shore-11894.herokuapp.com/userDital`;
         fetch(url, {
             method: 'POST',
             headers: {

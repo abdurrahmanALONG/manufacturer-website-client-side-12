@@ -5,7 +5,7 @@ import Loding from '../Loding/Loding'
 import User from './User';
 
 const Users = () => {
-    const { data: allUsers, isLoading, refetch } = useQuery('allUsers', () => fetch('http://localhost:5000/users', {
+    const { data: allUsers, isLoading, refetch } = useQuery('allUsers', () => fetch('https://polar-shore-11894.herokuapp.com/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
