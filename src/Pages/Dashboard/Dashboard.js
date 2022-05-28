@@ -1,11 +1,13 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../../CommonPages/useAdmin';
 import auth from '../../firebase.init';
 import './Dashboard.css'
 
 const Dashboard = () => {
     const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
     return (
         <div className="das-container">
             <div className="">
@@ -15,11 +17,10 @@ const Dashboard = () => {
             <div className="das-link">
                 <label for="dashboard-sidebar"></label>
                 <ul className="">
-                    <li><Link to="/dashboard/MyOrders">My Orders</Link></li>
-                    <li><Link to="/dashboard/AddAReview">Add Reviews</Link></li>
+                    {!admin && <li><Link to="/dashboard/MyOrders">My Orders</Link></li>}
+                    { !admin && <li><Link to="/dashboard/AddAReview">Add Reviews</Link></li>}
                     <li><Link to="/dashboard/MyProfile">My Profile</Link></li>
-                    <li><Link to="/dashboard/Users">Users</Link></li>
-                    {/* { admin && <li><Link to="/dashboard/users">All Users</Link></li>} */}
+                    {admin && <li><Link to="/dashboard/Users">Users</Link></li>}
                 </ul>
 
             </div>

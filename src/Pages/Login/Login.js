@@ -37,7 +37,7 @@ const Login = () => {
 
 
 
-    if (loading || sending) {
+    if (loading) {
         return <Loding></Loding>
     }
     if (error) {
