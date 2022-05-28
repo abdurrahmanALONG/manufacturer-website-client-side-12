@@ -9,8 +9,6 @@ import Home from './Pages/Home/Home';
 import ShowAllItems from './Pages/Home/ShowAllItems';
 import Login from './Pages/Login/Login';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
-import Purchase from './Pages/Purchase/Purchase';
-import Services from './Pages/Services/Services';
 import MyOrders from './Pages/Dashboard/Orders/MyOrders';
 import AddAReview from './Pages/Dashboard/AddAReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
@@ -36,7 +34,6 @@ function App() {
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/registration" element={<Registration></Registration>}></Route>
-          <Route path="/services" element={<Services></Services>}></Route>
           <Route path="/showAllItems" element={<ShowAllItems></ShowAllItems>}></Route>
           <Route path="/item/:itemID" element={
             <RequireAuth>
@@ -54,7 +51,6 @@ function App() {
             <Route path="ManageAllOrders" element={<ManageAllOrders></ManageAllOrders>}></Route>
             <Route path="Users" element={<Users></Users>}></Route>
           </Route>
-          <Route path="/purchase" element={<Purchase></Purchase>}></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </div>

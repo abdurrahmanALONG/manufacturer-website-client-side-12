@@ -19,7 +19,7 @@ const MakeOrder = () => {
             .then(data => setItem(data));
     }, [itemID]);
 
-    const { register,  handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
         const url = `http://localhost:5000/orders`;
@@ -37,7 +37,6 @@ const MakeOrder = () => {
                 window.location.reload();
             })
     };
-
 
 
 
@@ -72,7 +71,6 @@ const MakeOrder = () => {
                     <input className='mb-2' placeholder='Phone number' type="number" {...register("phone")} />
                     <input className='mb-2' placeholder='Supplier Email' value={user?.email} type="text" {...register("email")} readOnly />
                     <input className='btn btn-primary' type="submit" value="Purchase" />
-                    {/* <input className='btn btn-primary' type="submit"disabled={Purchase?.item.minOrderQuantity || item.availableQuantity} value="Purchase" /> */}
                 </form>
                 <ToastContainer></ToastContainer>
             </div>

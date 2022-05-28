@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
             <h1 className='text-center'> All Orders</h1>
             <div className='itemsshow'>
                 {
-                    itemsAll.slice(0, 3).map(items => <ManageAllOrdersItem
+                    itemsAll.map(items => <ManageAllOrdersItem
                         key={items._id}
                         items={items}
                         ></ManageAllOrdersItem>)

@@ -21,6 +21,8 @@
 ### react-firebase-hooks
 ### react-toastify
 ### react-query
+### react-hook-form
+### JWT
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
