@@ -21,6 +21,7 @@ import Users from './Pages/Dashboard/Users';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import AddAProduct from './Pages/Dashboard/AddAProduct';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+import MakeOrder from './Pages/Home/MakeOrder';
 
 
 
@@ -39,7 +40,7 @@ function App() {
           <Route path="/showAllItems" element={<ShowAllItems></ShowAllItems>}></Route>
           <Route path="/item/:itemID" element={
             <RequireAuth>
-              <Purchase></Purchase>
+             <MakeOrder></MakeOrder>
             </RequireAuth>
           }></Route>
           <Route path="/blogs" element={<Blogs></Blogs>}></Route>
