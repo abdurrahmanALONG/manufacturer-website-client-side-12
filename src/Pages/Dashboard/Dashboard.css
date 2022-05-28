@@ -1,0 +1,8 @@
+.das-container{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.das-link{
+    background-color: rgb(184, 219, 205);
+}

@@ -16,6 +16,7 @@ import AddAReview from './Pages/Dashboard/AddAReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import Registration from './Pages/Login/Registration';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 
 
@@ -36,15 +37,15 @@ function App() {
               <Purchase></Purchase>
             </RequireAuth>
           }></Route>
-          <Route path="/MyOrders" element={<MyOrders></MyOrders>}></Route>
-          <Route path="/AddAReview" element={<AddAReview></AddAReview>}></Route>
           <Route path="/blogs" element={<Blogs></Blogs>}></Route>
           <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route>
 
-
-          <Route path="/MyProfile" element={
-            <RequireAuth><MyProfile></MyProfile></RequireAuth>}>
+          <Route path="Dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
+            <Route path="MyOrders" element={<MyOrders></MyOrders>}></Route>
+            <Route path="AddAReview" element={<AddAReview></AddAReview>}></Route>
+            <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
           </Route>
+          <Route path="/purchase" element={<Purchase></Purchase>}></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </div>

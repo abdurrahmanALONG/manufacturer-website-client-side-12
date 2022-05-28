@@ -8,7 +8,7 @@ import './Home.css'
 const Item = ({ item }) => {
     const { _id, name, img, unitPerPrice, availableQuantity, minOrderQuantity, suppliername, details } = item;
     const navigate = useNavigate();
-    const navigateToPurchasePage = id => {
+    const navigateToOrderPage = id => {
         navigate(`/item/${id}`)
     }
 
@@ -27,8 +27,8 @@ const Item = ({ item }) => {
                     <p>{details}</p>
                 </Card.Body>
                 <Card>
-                    <Button onClick={() => navigateToPurchasePage(_id)} variant="info" type="submit">
-                    Buy Now
+                    <Button onClick={() => navigateToOrderPage(_id)} variant="info" type="submit">
+                    Order Now
                     </Button>
                 </Card>
             </Card>

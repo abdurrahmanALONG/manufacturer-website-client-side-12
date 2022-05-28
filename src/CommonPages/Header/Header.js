@@ -33,11 +33,8 @@ const Header = () => {
                         <Nav>
                             <Nav.Link as={Link}  to="blogs">Blogs</Nav.Link>
                             <Nav.Link as={Link}  to="myPortfolio">My Portfolio</Nav.Link>
-                            <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-                                <NavDropdown.Item as={Link} to="MyOrders">My Orders</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="AddAReview">Add A Review</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="MyProfile">My Profile</NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link as={Link}  to="Dashboard">Dashboard</Nav.Link>
+                            
                             {
                                 user && <>
                                      <Navbar.Brand><span>{user.displayName}</span></Navbar.Brand>

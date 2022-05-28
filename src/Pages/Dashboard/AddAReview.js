@@ -30,7 +30,7 @@ const AddAReview = () => {
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <textarea className='mb-2' placeholder='Description' type="text" {...register("description")} />
                 <input className='mb-2' placeholder='Please Ratings us(1 to 5 )' type="number" {...register("ratings")} />
-                <input className='btn btn-primary' type="submit" value="Add Item" />
+                <input className='btn btn-primary' type="submit" value="Add Review" />
             </form>
             <ToastContainer></ToastContainer>
         </div>

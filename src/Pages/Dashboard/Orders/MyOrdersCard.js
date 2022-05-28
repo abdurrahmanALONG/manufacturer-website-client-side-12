@@ -1,10 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import './MyOrders.css'
 
 const MyOrdersCard = ({ myitemDelete, handelDelete }) => {
     const { email, name, img, unitPerPrice, availableQuantity, minOrderQuantity, suppliername, details } = myitemDelete;
-    console.log(email);
+   const navigate = useNavigate();
+   const navigatePurchasPage = event => {
+    navigate('/Purchase');
+}
 
 
 
@@ -23,6 +27,11 @@ const MyOrdersCard = ({ myitemDelete, handelDelete }) => {
                 <Card.Body className='mx-auto'>
                     <Card.Link className='btn btn-primary pe-auto mx-2 text-center'  onClick={() => handelDelete(myitemDelete._id)} >
                         Cancel
+                    </Card.Link>
+                </Card.Body>
+                <Card.Body className='mx-auto'>
+                    <Card.Link className='btn btn-primary pe-auto mx-2 text-center' onClick={navigatePurchasPage} >
+                      Purches
                     </Card.Link>
                 </Card.Body>
             </Card>

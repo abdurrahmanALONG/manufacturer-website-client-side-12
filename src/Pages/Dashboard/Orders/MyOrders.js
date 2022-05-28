@@ -4,8 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import MyOrdersCard from './MyOrdersCard';
-import './MyOrders.css'
-import OrderModal from './OrderModal';
+import './MyOrders.css';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
@@ -18,7 +17,7 @@ const MyOrders = () => {
     console.log(myitemsDelete);
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/tools?email=${user?.email}`)
+            fetch(`http://localhost:5000/orders?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => setMyItemsDelete(data));
         }
@@ -28,10 +27,18 @@ const MyOrders = () => {
     const handelDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const remaining = myitemsDelete.filter(myitemDelete => myitemDelete._id !== id);
-            setMyItemsDelete(remaining);
-            toast('Delete Successfully');
-            window.location.reload();
+            const url = `http://localhost:5000/orders/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remaining = myitemsDelete.filter(itemDelete => itemDelete._id !== id);
+                    setMyItemsDelete(remaining);
+                    toast('Delete Successfully');
+                    window.location.reload();
+                })
         }
     }
     // console.log(myitemsDelete);
