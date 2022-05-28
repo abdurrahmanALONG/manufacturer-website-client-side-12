@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loding from '../../Pages/Loding/Loding'
+import useToken from '../../CommonPages/useToken';
 
 const Registration = () => {
     const [
@@ -12,9 +13,16 @@ const Registration = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    // console.log('hi this is', user);
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
+
+    const [token] = useToken(user);
+
+
+
+
     const navigate = useNavigate();
     const navigateLoginPage = event => {
         navigate('/Login')
@@ -23,7 +31,7 @@ const Registration = () => {
     if (loading) {
         <Loding></Loding>
     }
-    if (user) {
+    if (token) {
         navigate('/Home')
     }
 
@@ -32,7 +40,7 @@ const Registration = () => {
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log(name, email, password);
+        // console.log(name, email, password);
         createUserWithEmailAndPassword(email, password);
     }
 

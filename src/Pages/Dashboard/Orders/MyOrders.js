@@ -5,21 +5,37 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import MyOrdersCard from './MyOrdersCard';
 import './MyOrders.css';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    console.log(user?.email);
-    // const navigate = useNavigate();
+    // console.log(user?.email);
+    const navigate = useNavigate();
 
 
 
     const [myitemsDelete, setMyItemsDelete] = useState([]);
-    console.log(myitemsDelete);
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/orders?email=${user?.email}`)
-                .then(res => res.json())
-                .then(data => setMyItemsDelete(data));
+            fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/');
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    
+                    setMyItemsDelete(data);
+                });
         }
     }, [user])
 
@@ -53,13 +69,6 @@ const MyOrders = () => {
         <div className='container'>
             <h1 className='text-center'>Your items: {myitemsDelete.length}</h1>
             <h6 className='text-center'>User Email: {user?.email}</h6>
-            <div>
-                {/* {
-            myitems.map(myitem =><div key={myitem._id}>
-                <p>{myitem.email} : {myitem.name}</p>
-            </div>)
-        } */}
-            </div>
             <div className='myitemsAllshow'>
                 {
                     myitemsDelete.map(myitemDelete => <MyOrdersCard

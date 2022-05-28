@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './MyOrders.css'
 
 const MyOrdersCard = ({ myitemDelete, handelDelete }) => {
-    const { email, name, img, unitPerPrice, availableQuantity, minOrderQuantity, suppliername, details } = myitemDelete;
+    const { email, name,  quantity, phone, address } = myitemDelete;
    const navigate = useNavigate();
    const navigatePurchasPage = event => {
     navigate('/Purchase');
@@ -15,14 +15,12 @@ const MyOrdersCard = ({ myitemDelete, handelDelete }) => {
     return (
         <div>
             <Card className='myitem'>
-                <Card.Img className='deleteImg' variant="top" src={img} />
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <h6>Unit Per Price: ${unitPerPrice}</h6>
-                    <h6>Available Quantity: {availableQuantity}</h6>
-                    <h6>Min-Order Quantity: {minOrderQuantity}</h6>
-                    <h6>Supplier Name: {suppliername}</h6>
-                    <p>{details}</p>
+                    <Card.Title>Name: {name}</Card.Title>
+                    <h6>Phone: {phone}</h6>
+                    <h6>Available Quantity: {quantity}</h6>
+                    <h6>Email: {email}</h6>
+                    <p>{address}</p>
                 </Card.Body>
                 <Card.Body className='mx-auto'>
                     <Card.Link className='btn btn-primary pe-auto mx-2 text-center'  onClick={() => handelDelete(myitemDelete._id)} >

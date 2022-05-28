@@ -9,6 +9,7 @@ import './Login.css'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import useToken from '../../CommonPages/useToken';
 
 const Login = () => {
     const [
@@ -24,6 +25,12 @@ const Login = () => {
     let errorHandel;
     let from = location.state?.from?.pathname || "/";
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user);
+
+
+
+
+
     const navigateRegiestarPage = event => {
         navigate('/Registration');
     }
@@ -38,7 +45,7 @@ const Login = () => {
             <p className='text-danger'>Error: {error?.message}</p>
         </div>
     }
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
 

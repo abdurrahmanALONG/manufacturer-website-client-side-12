@@ -17,6 +17,7 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import Registration from './Pages/Login/Registration';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Users from './Pages/Dashboard/Users';
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="MyOrders" element={<MyOrders></MyOrders>}></Route>
             <Route path="AddAReview" element={<AddAReview></AddAReview>}></Route>
             <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="Users" element={<Users></Users>}></Route>
           </Route>
           <Route path="/purchase" element={<Purchase></Purchase>}></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>

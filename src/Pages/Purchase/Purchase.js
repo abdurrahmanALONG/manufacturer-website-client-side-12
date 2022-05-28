@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Purchase = () => {
+    const [user] = useAuthState(auth);
+
+    const [myAllOrders, setMyAllOrders] = useState([]);
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:5000/orders?email=${user?.email}`)
+                .then(res => res.json())
+                .then(data => setMyAllOrders(data));
+        }
+    }, [user])
       
     return (
         <div>
-            <h1 className='text-center'>This is for Purchase</h1>
-              <Card className='items w-50 mx-auto'>
+            <Card className='myitem '>
                 <Card.Body>
-                    {/* <Card.Title>Name: {name}</Card.Title>
-                    <h6>Email: {email}</h6>
-                    <h6>Order Quantity: {quantity}</h6>
-                    <h6>Phone: {phone}</h6>
-                    <h6>Address: {address}</h6> */}
+                    <Card.Title>Name: {myAllOrders.name}</Card.Title>
+                    <h6>Email: ${myAllOrders.email}</h6>
+                    <h6>Order Quantity: {myAllOrders.quantity}</h6>
+                    <h6>Min-Order Quantity: {myAllOrders.phone}</h6>
+                    <h6>Address: {myAllOrders.address}</h6>
                 </Card.Body>
-                <Card>
-                    <Button variant="info" type="submit">
-                    Purchase Now
-                    </Button>
-                </Card>
+                 {/* <Card.Body className='mx-auto'>
+                    <Card.Link className='btn btn-primary pe-auto mx-2 text-center'  onClick={() => handelDelete(myitemDelete._id)} >
+                        Cancel
+                    </Card.Link>
+                </Card.Body>  */}
             </Card>
         </div>
       

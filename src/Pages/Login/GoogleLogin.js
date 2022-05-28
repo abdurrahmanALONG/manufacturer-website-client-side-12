@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import useToken from '../../CommonPages/useToken';
 import auth from '../../firebase.init';
 import logo from '../../images/google-logo.png';
 import Loding from '../../Pages/Loding/Loding';
@@ -8,6 +9,8 @@ import Loding from '../../Pages/Loding/Loding';
 
 const GoogleLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+    const [token] = useToken(user);
     const navigate = useNavigate();
     let errorHandel;
 
@@ -19,7 +22,7 @@ const GoogleLogin = () => {
             <p className='text-danger'>Error: {error?.message}</p>
         </div>
     }
-    if (user) {
+    if (token) {
         navigate('/Home');
     }
 
