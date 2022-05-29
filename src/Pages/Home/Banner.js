@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import banner1 from '../../images/bannar/bannar-1.jpg'
-import banner2 from '../../images/bannar/bannar-2.jpg'
-import banner3 from '../../images/bannar/bannar-3.jpg'
+// import banner1 from '../../images/bannar/bannar-1.jpg'
+// import banner2 from '../../images/bannar/bannar-2.jpg'
+// import banner3 from '../../images/bannar/bannar-3.jpg'
 import './Home.css'
 
 const Banner = () => {
@@ -12,7 +12,7 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 banner-height"
-                        src={banner1}
+                        src={`https://i.ibb.co/7Nh07Kp/bannar-1.jpg`}
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -23,10 +23,9 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 banner-height"
-                        src={banner2}
+                        src={`https://i.ibb.co/wKZBNHs/bannar-2.jpg`}
                         alt="Second slide"
                     />
-
                     <Carousel.Caption>
                         <h3>Second slide label</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -35,10 +34,9 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 banner-height"
-                        src={banner3}
+                        src={`https://i.ibb.co/YXsDbY2/bannar-3.jpg`}
                         alt="Third slide"
                     />
-
                     <Carousel.Caption>
                         <h3>Third slide label</h3>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

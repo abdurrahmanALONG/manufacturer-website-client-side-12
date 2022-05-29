@@ -20,6 +20,7 @@ import ManageProducts from './Pages/Dashboard/ManageProducts';
 import AddAProduct from './Pages/Dashboard/AddAProduct';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import MakeOrder from './Pages/Home/MakeOrder';
+import Payment from './Pages/Dashboard/Payment';
 
 
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route>
           <Route path="Dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
             <Route path="MyOrders" element={<MyOrders></MyOrders>}></Route>
+            <Route path="Payment/:id" element={<Payment></Payment>}></Route>
             <Route path="AddAReview" element={<AddAReview></AddAReview>}></Route>
             <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
             <Route path="ManageProducts" element={<ManageProducts></ManageProducts>}></Route>

@@ -27,11 +27,6 @@ const Items = () => {
                     ></Item>)
                 }
             </div>
-            <div className='my-3 text-center'>
-                <Link to="/AddInventory" className='btn btn-primary pe-auto text-center'>
-                    Add New Inventories
-                </Link>
-            </div>
             <p><Link to="/ShowAllItems" className='text-primary text-decoration-none' >Show All Items</Link> </p>
 
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import Logo from '../../images/card/pro-1.jpg'
+// import Logo from '../../images/card/pro-1.jpg'
 import './Home.css'
 import ReviewCard from './ReviewCard';
 

@@ -1,0 +1,52 @@
+[debug] [2022-05-28T17:54:12.063Z] ----------------------------------------------------------------------
+[debug] [2022-05-28T17:54:12.066Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\abdul\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2022-05-28T17:54:12.067Z] CLI Version:   10.9.2
+[debug] [2022-05-28T17:54:12.067Z] Platform:      win32
+[debug] [2022-05-28T17:54:12.067Z] Node Version:  v16.15.0
+[debug] [2022-05-28T17:54:12.080Z] Time:          Sun May 29 2022 01:54:12 GMT+0800 (China Standard Time)
+[debug] [2022-05-28T17:54:12.080Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-28T17:54:12.085Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=642781942&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-05-28T17:54:33.899Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ {"code":"4/0AX4XfWiYqPj8lEtwEF1eYDvYy9APlVEj7g4_OFSGRsZ3N8uEPSYgaNkj65uL1ZQxSgLCrw","client_id":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","client_secret":"j9iVZfS8kkCEFUPaAeJV0sAi","redirect_uri":"http://localhost:9005","grant_type":"authorization_code"}
+[debug] [2022-05-28T17:54:54.959Z] Token Fetch Error: FirebaseError: Server Error. connect ETIMEDOUT 172.217.163.45:443
+    at Request._callback (C:\Users\abdul\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:32:31)
+    at self.callback (C:\Users\abdul\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (node:events:527:28)
+    at Request.emit (node:domain:475:12)
+    at Request.onRequestError (C:\Users\abdul\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (node:events:527:28)
+    at ClientRequest.emit (node:domain:475:12)
+    at TLSSocket.socketErrorListener (node:_http_client:454:9)
+    at TLSSocket.emit (node:events:527:28)
+    at TLSSocket.emit (node:domain:475:12)
+    at emitErrorNT (node:internal/streams/destroy:157:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+[debug] [2022-05-28T17:54:54.993Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2022-05-28T17:54:54.993Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"ce28f029-3530-48eb-984e-e6dc3cb60867"}
+[debug] [2022-05-28T17:54:55.632Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2022-05-28T17:54:55.633Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"EDZ8fYxhAoycL7bBn7mZUGXLwfZSCBSlsN_EAzvNSl4"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    CE28F
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=DkXBxB1KfAWJWp4wd0brEDi6K__CLvGt4ULe24fIYdg&session=ce28f029-3530-48eb-984e-e6dc3cb60867&attest=EDZ8fYxhAoycL7bBn7mZUGXLwfZSCBSlsN_EAzvNSl4
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
+[debug] [2022-05-28T17:55:03.208Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-05-28T17:55:03.209Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}

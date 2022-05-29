@@ -5,7 +5,7 @@ import Item from './Item';
 const ShowAllItems = () => {
     const [itemsAll, setItemsAll] = useState([]);
     useEffect(() => {
-        fetch('items.json')
+        fetch(`https://polar-shore-11894.herokuapp.com/tools`)
             .then(res => res.json())
             .then(data => setItemsAll(data));
     }, [])
@@ -21,11 +21,6 @@ const ShowAllItems = () => {
                     item={item}
                 ></Item>)
             }
-        </div>
-        <div className='my-3 text-center'>
-            <Link to="/AddInventory" className='btn btn-primary pe-auto text-center'>
-                Add New Inventories
-            </Link>
         </div>
     </div>
     );

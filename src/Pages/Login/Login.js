@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -27,17 +27,45 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
     const [token] = useToken(user);
 
+    const initialValues = { username: "", email: "", password: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
 
 
-
+    useEffect(() => {
+        console.log(formErrors);
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues);
+        }
+    }, [formErrors]);
+    const validate = (values) => {
+        const errors = {};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.email) {
+            errors.email = "Email is required!";
+        } else if (!regex.test(values.email)) {
+            errors.email = "This is not a valid email format!";
+        }
+        if (!values.password) {
+            errors.password = "Password is required";
+        } else if (values.password.length < 6) {
+            errors.password = "Password must be more than 6 characters";
+        } else if (values.password.length > 10) {
+            errors.password = "Password cannot exceed more than 10 characters";
+        }
+        return errors;
+    };
 
     const navigateRegiestarPage = event => {
         navigate('/Registration');
     }
-
-
-
-    if (loading) {
+    if (loading || sending) {
         return <Loding></Loding>
     }
     if (error) {
@@ -50,15 +78,17 @@ const Login = () => {
     }
 
 
-    const handelLogin =  async(event) => {
+    const handelLogin = async (event) => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log( email, password);
-        await  signInWithEmailAndPassword(email, password);
-        const {data} = await axios.post('https://polar-shore-11894.herokuapp.com/tools', {email});
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
+        await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('https://polar-shore-11894.herokuapp.com/tools', { email });
         localStorage.setItem('accessToken', data.accessToken);
         navigate(from, { replace: true });
+       
     }
 
 
@@ -79,18 +109,28 @@ const Login = () => {
             <Form onSubmit={handelLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
+                    <Form.Control
+                        ref={emailRef}
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        value={formValues.email}
+                        onChange={handleChange}
+                    />
                 </Form.Group>
+                <p className='text-danger'>{formErrors.email}</p>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref={passwordRef} type="password" placeholder="Password" />
+                    <Form.Control
+                        ref={passwordRef}
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={formValues.password}
+                        onChange={handleChange}
+                    />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                <p className='text-danger'>{formErrors.password}</p>
                 <Button variant="primary" type="submit">
                     Login
                 </Button>

@@ -9,7 +9,7 @@ const AddAProduct = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        const url = `https://still-inlet-24305.herokuapp.com/item`;
+        const url = `https://polar-shore-11894.herokuapp.com/tools`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -25,15 +25,16 @@ const AddAProduct = () => {
             })
     };
     return (
-        <div className='w-50 mx-auto'>
+        <div className='w-50 mx-auto my-5'>
             <h1 className='text-center'>Please add new item</h1>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mb-2' placeholder='Item Name' type="text" {...register("name", { required: true, maxLength: 20 })} />
-                <textarea className='mb-2' placeholder='Description' type="text" {...register("details")} />
-                <input className='mb-2' placeholder='Price' type="number" {...register("price")} />
-                <input className='mb-2' placeholder='Quantity' type="number" {...register("quantity")} />
+                <input className='mb-2' placeholder='UnitPerPrice' type="number" {...register("unitPerPrice", { required: true, maxLength: 20 })} />
+                <input className='mb-2' placeholder='Available Quantity' type="number" {...register("availableQuantity")} />
+                <input className='mb-2' placeholder='Min Order Quantity' type="number" {...register("minOrderQuantity")} />
                 <input className='mb-2' placeholder='Supplier Name' {...register("suppliername", { required: true, maxLength: 20 })} />
-                <input className='mb-2' placeholder='Supplier Email' value={user?.email} type="text" {...register("email")} readOnly />
+                <input className='mb-2' placeholder='Email' value={user?.email} type="text" {...register("email")} readOnly />
+                <textarea className='mb-2' placeholder='Details' type="number" {...register("details")} />
                 <input className='mb-2' placeholder='Image URL' type="text" {...register("img")} />
                 <input className='btn btn-primary' type="submit" value="Add Item" />
             </form>

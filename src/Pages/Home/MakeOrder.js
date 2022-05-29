@@ -8,9 +8,11 @@ import auth from '../../firebase.init';
 
 const MakeOrder = () => {
     const { itemID } = useParams();
+    console.log(itemID);
     const [user] = useAuthState(auth);
     const [show, setShow] = useState(false);
     const [item, setItem] = useState({});
+
 
     useEffect(() => {
         const url = `https://polar-shore-11894.herokuapp.com/tools/${itemID}`;
@@ -39,6 +41,8 @@ const MakeOrder = () => {
     };
 
 
+console.log(item.unitPerPrice);
+
 
     return (
         <div className='my-5'>
@@ -65,12 +69,42 @@ const MakeOrder = () => {
             </div>
             <div className='w-50 mx-auto my-5'>
                 <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                    <input className='mb-2' placeholder='Item Name' type="text" value={item?.name}  {...register("name")} readOnly />
-                    <textarea className='mb-2' placeholder='Address' type="text" {...register("address")} />
-                    <input className='mb-2' placeholder='Quantity' type="number" min={item.minOrderQuantity} max={item.availableQuantity} {...register("quantity")} />
-                    <input className='mb-2' placeholder='Phone number' type="number" {...register("phone")} />
-                    <input className='mb-2' placeholder='Supplier Email' value={user?.email} type="text" {...register("email")} readOnly />
-                    <input className='btn btn-primary' type="submit" value="Purchase" />
+                    <input className='mb-2'
+                        placeholder='Item Name'
+                        type="text"
+                        value={item?.name}
+                        {...register("name")}
+                    />
+                    <textarea className='mb-2'
+                        placeholder='Address'
+                        type="text"
+                        {...register("address")} />
+                    <input className='mb-2'
+                        placeholder='Quantity'
+                        type="number"
+                        min={item.minOrderQuantity}
+                        max={item.availableQuantity}
+                        {...register("quantity")} />
+                    <input className='mb-2'
+                        placeholder='Unit Per-Price'
+                        type="number"
+                        value={item?.unitPerPrice}
+                        {...register("unitPerPrice")}
+                    />
+                    <input className='mb-2'
+                        placeholder='Phone number'
+                        type="number"
+                        {...register("phone")} />
+                    <input className='mb-2'
+                        placeholder='Supplier Email'
+                        value={user?.email}
+                        type="text"
+                        {...register("email")}
+                        readOnly />
+                    <input className='btn btn-primary'
+                        // disabled={!validate}
+                        type="submit"
+                        value="Purchase" />
                 </form>
                 <ToastContainer></ToastContainer>
             </div>
