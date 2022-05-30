@@ -1,3 +1,5 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -5,9 +7,12 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loding from '../Loding/Loding';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe('pk_test_51L5BsnLfbkOeTzQSsOUnuHuuVbO0sJfHzAfEeC5O7Scj6oWd7bWGNVyINCYDwbG3IiNbIZVAbAAfSj9CQ5Pn20CN00vtfsp1Fg');
 
 const Payment = () => {
-    const { id } = useParams(); 
+    const { id } = useParams();
     const url = `https://polar-shore-11894.herokuapp.com/orders/${id}`;
 
     const { data: orderProduct, isLoading } = useQuery(['booking', id], () => fetch(url, {
@@ -20,10 +25,10 @@ const Payment = () => {
     if (isLoading) {
         return <Loding></Loding>
     }
-   const onePrice = parseInt(orderProduct.unitPerPrice);
-   const quantity = parseInt(orderProduct.quantity);
-   const total = onePrice*quantity;
- 
+    const onePrice = parseInt(orderProduct.unitPerPrice);
+    const quantity = parseInt(orderProduct.quantity);
+    const total = onePrice * quantity;
+
 
     return (
         <div>
@@ -40,6 +45,11 @@ const Payment = () => {
                     </Card.Body>
                     <h5>Total bill: ${total}</h5>
                 </Card>
+            </div>
+            <div>
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm orderProduct={orderProduct} total={total} />
+                </Elements>
             </div>
 
         </div>

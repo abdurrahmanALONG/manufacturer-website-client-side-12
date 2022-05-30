@@ -3,7 +3,6 @@
 
 
 
-
 ## Features and Functionality
 ### This is a manufacturer website page.
 ### user must need a varified email address for login.

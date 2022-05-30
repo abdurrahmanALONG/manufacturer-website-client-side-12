@@ -6,3 +6,8 @@
 .das-link{
     background-color: rgb(184, 219, 205);
 }
+
+.background{
+    background-color: rgb(116, 124, 121);
+    border-radius: 10px;
+}
