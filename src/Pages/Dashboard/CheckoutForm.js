@@ -14,7 +14,7 @@ const CheckoutForm = ({ orderProduct, total }) => {
     const { _id, email, name } = orderProduct;
 
     useEffect(() => {
-        fetch('https://secret-dusk-46242.herokuapp.com/create-payment-intent', {
+        fetch('https://polar-shore-11894.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({ orderProduct, total }) => {
                 appointment: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`https://secret-dusk-46242.herokuapp.com/booking/${_id}`, {
+            fetch(`https://polar-shore-11894.herokuapp.com/booking/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
